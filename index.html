@@ -246,7 +246,7 @@
     .skill-group h4 i { width: 8px; height: 8px; border-radius: 3px; background: var(--grad); }
 
     /* ---------- projects ---------- */
-    .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .projects { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
     .project {
       position: relative; display: flex; flex-direction: column; text-decoration: none; padding: 24px; border-radius: 20px;
       border: 1px solid var(--line); background: var(--surface); overflow: hidden; transition: transform .25s, border-color .25s;
@@ -269,6 +269,29 @@
     .proj-top .proj-meta { margin-right: 26px; }
     .more { margin-top: 26px; font-size: 14.5px; color: var(--muted); }
     .more a { color: var(--accent); font-weight: 600; text-decoration: none; }
+
+
+    /* ---------- featured projects ---------- */
+    .featured { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .feat {
+      position: relative; display: flex; flex-direction: column; text-decoration: none; padding: 28px; border-radius: 22px; overflow: hidden; isolation: isolate;
+      background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); transition: transform .25s, border-color .25s;
+    }
+    .feat::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(420px 220px at 100% 0%, var(--glow-1), transparent 70%); opacity: .7; transition: opacity .3s; }
+    .feat:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 50%, var(--line)); }
+    .feat:hover::before { opacity: 1; }
+    .feat-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 18px; }
+    .feat-badge { font: 600 12px/1 "JetBrains Mono", monospace; padding: 7px 11px; border-radius: 8px; background: var(--grad); color: var(--on-grad); }
+    .ci-pill { display: inline-flex; align-items: center; gap: 7px; font: 500 12px/1 "JetBrains Mono", monospace; color: var(--muted); }
+    .ci-pill i { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 3px color-mix(in srgb, #22c55e 25%, transparent); }
+    .feat h3 { margin: 0 0 6px; font: 700 28px/1.1 "Space Grotesk", sans-serif; letter-spacing: -.03em; }
+    .feat-sub { margin: 0 0 18px; color: var(--muted); font-size: 15px; }
+    .checks { list-style: none; margin: 0 0 20px; padding: 0; display: grid; gap: 9px; font-size: 14.5px; color: var(--muted); flex: 1; }
+    .checks li { position: relative; padding-left: 26px; }
+    .checks li::before { content: "✓"; position: absolute; left: 0; top: 1px; width: 17px; height: 17px; border-radius: 5px; display: grid; place-items: center; font-size: 11px; font-weight: 700; background: var(--chip); color: var(--accent); }
+    .checks code { font: 500 12.5px "JetBrains Mono", monospace; color: var(--text); background: var(--bg-2); padding: 1px 5px; border-radius: 5px; }
+    .feat-link { margin-top: 18px; font-weight: 600; font-size: 14px; color: var(--accent); }
+    #projects .sub-head { margin-top: 44px; }
 
     /* ---------- education ---------- */
     .edu { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -340,7 +363,8 @@
       .job { grid-template-columns: 1fr; padding: 22px 20px; gap: 14px; }
       .job::before { left: -26px; }
       .co-logo { width: 44px; height: 44px; font-size: 14px; }
-      .projects, .skill-groups, .edu, .langs { grid-template-columns: 1fr; }
+      .projects, .skill-groups, .edu, .langs, .featured { grid-template-columns: 1fr; }
+      .feat { padding: 22px 20px; }
       .chart-card { padding: 20px 14px 16px; }
       .chart { --label: 96px; }
       .chart-label { font-size: 11.5px; padding-right: 8px; }
@@ -534,9 +558,38 @@
     <section id="projects">
       <div class="wrap">
         <div class="sec-head reveal">
-          <div><p class="kicker">// 03 — open source</p><h2>Side projects</h2></div>
-          <p class="sec-sub">Smaller builds on GitHub where I try out architectures and tools.</p>
+          <div><p class="kicker">// 03 — open source</p><h2>Open source</h2></div>
+          <p class="sec-sub">Production-grade patterns, small enough to read in one sitting &mdash; tested against real PostgreSQL in CI.</p>
         </div>
+        <div class="featured">
+          <a class="feat reveal" href="https://github.com/Ahmedkholaif/hookline" target="_blank" rel="noopener">
+            <div class="feat-top"><span class="feat-badge">Featured · Go</span><span class="ci-pill"><i></i>CI passing</span></div>
+            <h3>hookline</h3>
+            <p class="feat-sub">Reliable webhook delivery on PostgreSQL &mdash; no Kafka or Redis needed.</p>
+            <ul class="checks">
+              <li><code>FOR UPDATE SKIP LOCKED</code> queue with leases: replicas scale out and crashed workers lose nothing</li>
+              <li>Full-jitter retries, <code>Retry-After</code>, dead-letter queue with one-call redelivery</li>
+              <li>Per-endpoint circuit breaker with a single half-open probe across replicas</li>
+              <li>HMAC-signed payloads with replay window and secret rotation</li>
+            </ul>
+            <ul class="tags"><li>Go</li><li>PostgreSQL</li><li>Distributed systems</li><li>Prometheus</li></ul>
+            <span class="feat-link">View on GitHub ↗</span>
+          </a>
+          <a class="feat reveal" style="--d:.08s" href="https://github.com/Ahmedkholaif/ledgerd" target="_blank" rel="noopener">
+            <div class="feat-top"><span class="feat-badge">Featured · Go</span><span class="ci-pill"><i></i>CI passing</span></div>
+            <h3>ledgerd</h3>
+            <p class="feat-sub">Double-entry ledger service &mdash; the core under wallets, payouts and invoicing.</p>
+            <ul class="checks">
+              <li>Idempotent transfers: concurrent retries with the same key move money exactly once</li>
+              <li>Deadlock-free row locking, stress-tested with 32 goroutines and 1,280 transfers</li>
+              <li>Invariants enforced in the database too: deferred balance trigger, append-only journal</li>
+              <li>Multi-currency postings and a full reconciliation audit endpoint</li>
+            </ul>
+            <ul class="tags"><li>Go</li><li>PostgreSQL</li><li>Fintech</li><li>Concurrency</li></ul>
+            <span class="feat-link">View on GitHub ↗</span>
+          </a>
+        </div>
+        <h3 class="sub-head reveal">Earlier side projects</h3>
         <div class="projects">
           <a class="project reveal" href="https://github.com/Ahmedkholaif/simple-nestjs" target="_blank" rel="noopener">
             <span class="arrow">↗</span>
@@ -559,26 +612,12 @@
             <p>Create delayed jobs and watch results arrive live over WebSockets, with images pulled from Unsplash.</p>
             <ul class="tags"><li>Express</li><li>WebSocket</li><li>React</li><li>MUI</li></ul>
           </a>
-          <a class="project reveal" href="https://github.com/Ahmedkholaif/e2e-loopback-soap" target="_blank" rel="noopener">
-            <span class="arrow">↗</span>
-            <div class="proj-top"><span class="proj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span class="proj-meta">JavaScript</span></div>
-            <h3>E2E-Encrypted SOAP Gateway</h3>
-            <p>End-to-end encrypted API proxy in front of a SOAP service, built on LoopBack with scripted Docker deployment.</p>
-            <ul class="tags"><li>LoopBack</li><li>SOAP</li><li>Docker</li></ul>
-          </a>
-          <a class="project reveal" style="--d:.06s" href="https://github.com/Ahmedkholaif/MERN_ITI_READS" target="_blank" rel="noopener">
+          <a class="project reveal" href="https://github.com/Ahmedkholaif/MERN_ITI_READS" target="_blank" rel="noopener">
             <span class="arrow">↗</span>
             <div class="proj-top"><span class="proj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14ZM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span><span class="proj-meta">★ 3</span></div>
             <h3>ITI Reads</h3>
             <p>Goodreads-style book tracker on the MERN stack: shelves, ratings, authors and categories.</p>
             <ul class="tags"><li>MongoDB</li><li>Express</li><li>React</li><li>Node</li></ul>
-          </a>
-          <a class="project reveal" style="--d:.12s" href="https://github.com/Ahmedkholaif/El-Maktaba-Online" target="_blank" rel="noopener">
-            <span class="arrow">↗</span>
-            <div class="proj-top"><span class="proj-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6ZM3 6h18M16 10a4 4 0 0 1-8 0"/></svg></span><span class="proj-meta">★ 1</span></div>
-            <h3>El-Maktaba Online</h3>
-            <p>Complete online bookstore with customer and admin portals, built with the Laravel framework.</p>
-            <ul class="tags"><li>PHP</li><li>Laravel</li><li>MySQL</li></ul>
           </a>
         </div>
         <p class="more reveal">More on <a href="https://github.com/Ahmedkholaif?tab=repositories" target="_blank" rel="noopener">GitHub →</a></p>
