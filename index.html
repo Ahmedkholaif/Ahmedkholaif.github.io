@@ -276,7 +276,24 @@
     .edu-card .co-logo { flex: none; width: 48px; height: 48px; font-size: 14px; }
     .edu-card h3 { margin: 0 0 4px; font: 600 17px/1.3 "Space Grotesk", sans-serif; }
     .edu-card p { margin: 0; color: var(--muted); font-size: 14px; }
-    .langs { margin-top: 16px; color: var(--muted); font-size: 14px; }
+    .sub-head { font: 600 13px/1 "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .12em; color: var(--faint); margin: 40px 0 16px; }
+    .langs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .lang { display: flex; gap: 18px; padding: 22px 24px; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); transition: border-color .25s, transform .25s; }
+    .lang:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); transform: translateY(-3px); }
+    .lang-glyph { flex: none; width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; background: var(--grad); color: #fff; font: 700 24px/1 "Space Grotesk", "Noto Naskh Arabic", "Geeza Pro", serif; box-shadow: 0 8px 22px -10px var(--glow-1); }
+    .lang-body { flex: 1; min-width: 0; }
+    .lang-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .lang h4 { margin: 0; font: 600 18px/1.3 "Space Grotesk", sans-serif; }
+    .lang h4 span { color: var(--faint); font-weight: 500; font-size: 15px; margin-left: 6px; }
+    .lang-level { font: 500 12px/1 "JetBrains Mono", monospace; color: var(--accent); background: var(--chip); padding: 6px 10px; border-radius: 8px; }
+    .meter { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin: 14px 0 12px; }
+    .meter i { height: 6px; border-radius: 3px; background: var(--track); position: relative; overflow: hidden; }
+    .meter i:not(.off)::after { content: ""; position: absolute; inset: 0; background: var(--grad); background-size: 500% 100%; transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
+    .meter i:nth-child(1)::after { background-position: 0 0; } .meter i:nth-child(2)::after { background-position: 25% 0; transition-delay: .1s; }
+    .meter i:nth-child(3)::after { background-position: 50% 0; transition-delay: .2s; } .meter i:nth-child(4)::after { background-position: 75% 0; transition-delay: .3s; }
+    .meter i:nth-child(5)::after { background-position: 100% 0; transition-delay: .4s; }
+    .lang.in .meter i::after, html:not(.js) .meter i::after { transform: scaleX(1); }
+    .lang p { margin: 0; color: var(--muted); font-size: 14px; }
 
     /* ---------- contact ---------- */
     .contact-card {
@@ -323,7 +340,7 @@
       .job { grid-template-columns: 1fr; padding: 22px 20px; gap: 14px; }
       .job::before { left: -26px; }
       .co-logo { width: 44px; height: 44px; font-size: 14px; }
-      .projects, .skill-groups, .edu { grid-template-columns: 1fr; }
+      .projects, .skill-groups, .edu, .langs { grid-template-columns: 1fr; }
       .chart-card { padding: 20px 14px 16px; }
       .chart { --label: 96px; }
       .chart-label { font-size: 11.5px; padding-right: 8px; }
@@ -570,7 +587,7 @@
 
     <section id="education">
       <div class="wrap">
-        <div class="sec-head reveal"><div><p class="kicker">// 04 — education</p><h2>Education</h2></div></div>
+        <div class="sec-head reveal"><div><p class="kicker">// 04 — education</p><h2>Education &amp; languages</h2></div></div>
         <div class="edu">
           <div class="edu-card reveal">
             <div class="co-logo">ITI</div>
@@ -581,7 +598,25 @@
             <div><h3>B.Sc. Petroleum Engineering</h3><p>Suez University · 2009 — 2014</p></div>
           </div>
         </div>
-        <p class="langs reveal">Languages: Arabic (native) · English (proficient)</p>
+        <h3 class="sub-head reveal">Languages</h3>
+        <div class="langs">
+          <div class="lang reveal">
+            <div class="lang-glyph" lang="ar" aria-hidden="true">ع</div>
+            <div class="lang-body">
+              <div class="lang-top"><h4>Arabic <span lang="ar">العربية</span></h4><span class="lang-level">Native</span></div>
+              <div class="meter" role="img" aria-label="Arabic: native, 5 of 5"><i></i><i></i><i></i><i></i><i></i></div>
+              <p>Mother tongue &mdash; full professional use across Egypt and the Gulf.</p>
+            </div>
+          </div>
+          <div class="lang reveal" style="--d:.08s">
+            <div class="lang-glyph" aria-hidden="true">En</div>
+            <div class="lang-body">
+              <div class="lang-top"><h4>English</h4><span class="lang-level">Professional</span></div>
+              <div class="meter" role="img" aria-label="English: professional working proficiency, 4 of 5"><i></i><i></i><i></i><i></i><i class="off"></i></div>
+              <p>Daily working language on a remote, London-based team &mdash; specs, code reviews and client calls.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
