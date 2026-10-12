@@ -581,7 +581,7 @@
       <div class="wrap">
         <div class="sec-head reveal">
           <div><p class="kicker">// 03 — open source</p><h2>Open source</h2></div>
-          <p class="sec-sub">Two small, production-grade systems across Go, NestJS, Next.js and Node + React. Each is tested against real PostgreSQL and real browsers in CI.</p>
+          <p class="sec-sub">Three small, production-grade systems across Go, NestJS, Next.js and Node + React. Each is tested in CI against real PostgreSQL, real message brokers and real browsers.</p>
         </div>
         <div class="system reveal">
           <div class="sys-head">
@@ -667,6 +667,43 @@
               <li>React 19 UI on <code>useSyncExternalStore</code> + <code>useDeferredValue</code>, no state library</li>
             </ul>
             <ul class="tags"><li>Node.js</li><li>React 19</li><li>Server-Sent Events</li></ul>
+            <span class="feat-link">View on GitHub ↗</span>
+          </a>
+        </div>
+        <div class="system reveal">
+          <div class="sys-head">
+            <div><p class="sys-kicker">System 03</p><h3>Webhook ingestion &amp; fan-out</h3></div>
+            <div class="flow" aria-label="Providers send webhooks to hookgate, written in Go or NestJS, which queues them on RabbitMQ, SQS or Pub/Sub and fans messages out to consumers">
+              <span class="node">providers</span><span class="arrow-r">→</span>
+              <span class="node-stack"><span class="node">hookgate<small>Go</small></span><span class="node">hookgate-nest<small>NestJS</small></span></span><span class="arrow-r">→</span>
+              <span class="node db">RabbitMQ · SQS · Pub/Sub</span>
+            </div>
+          </div>
+          <p class="sys-sub">Accept webhooks, queue them, process them and push messages onward, with <b>exactly-once effects</b> on an at-least-once pipeline. CI runs Go and NestJS workers on the same database and queues, and they behave as one system.</p>
+        </div>
+        <div class="featured">
+          <a class="feat reveal" style="--d:0s" href="https://github.com/Ahmedkholaif/hookgate" target="_blank" rel="noopener">
+            <div class="feat-top"><span class="feat-badge">Go</span><span class="ci-pill"><i></i>CI passing</span></div>
+            <h3>hookgate</h3>
+            <p class="feat-sub">Webhook ingestion and fan-out over RabbitMQ, Amazon SQS or Google Pub/Sub.</p>
+            <ul class="checks">
+              <li>Dedup at every hop: provider ids, transactional outbox, attempt fencing, UUIDv5 message ids, inbox consumers</li>
+              <li>Retries with full jitter, dead-lettering and replay, the same on every broker; a status timeline per message</li>
+              <li>Compose per broker, Kubernetes manifests deployed to a kind cluster in CI, minikube commands</li>
+            </ul>
+            <ul class="tags"><li>Go</li><li>RabbitMQ</li><li>SQS</li><li>Pub/Sub</li><li>Kubernetes</li></ul>
+            <span class="feat-link">View on GitHub ↗</span>
+          </a>
+          <a class="feat reveal" style="--d:0.06s" href="https://github.com/Ahmedkholaif/hookgate-nest" target="_blank" rel="noopener">
+            <div class="feat-top"><span class="feat-badge">NestJS</span><span class="ci-pill"><i></i>CI passing</span></div>
+            <h3>hookgate-nest</h3>
+            <p class="feat-sub">The same system in NestJS, interchangeable with the Go service.</p>
+            <ul class="checks">
+              <li>Same API, schema, wire format and message ids; CI splits the pipeline across Go and NestJS both ways</li>
+              <li>Role-based dynamic module, broker providers behind one interface, raw-body HMAC verification</li>
+              <li>Tested with every message delivered twice: each outbound message is still applied exactly once</li>
+            </ul>
+            <ul class="tags"><li>NestJS</li><li>TypeScript</li><li>RabbitMQ</li><li>SQS</li><li>Pub/Sub</li></ul>
             <span class="feat-link">View on GitHub ↗</span>
           </a>
         </div>
