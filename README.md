@@ -56,7 +56,7 @@ The whole site is one static file, `index.html`: no build step, no framework. Op
 Rules of thumb:
 - Every claim on the site should be backed by the current CV, using the same wording or something softer.
 - Keep the phone number out of the HTML. It's only in the PDF.
-- Use HTML entities for special characters: `&amp;` for &, `&mdash;` for —.
+- Use HTML entities for special characters, such as `&amp;` for &. Don't use em dashes (—) in the copy; use a comma, colon or full stop instead. Date ranges use an en dash (`Apr 2023 – Present`).
 
 ### 1a. Replacing the CV
 
