@@ -40,6 +40,8 @@ The whole site is one static file, `index.html`: no build step, no framework. Op
 | Section | Search for | What to edit |
 |---|---|---|
 | Page title / link previews | `<title>`, `name="description"`, `og:` | title and the description shown when the link is shared |
+| Link-preview image | `assets/og-card.png` (1200×630), made from `assets/og-card.html` | the card LinkedIn, Slack and X show. To regenerate after editing the HTML: `google-chrome --headless=new --hide-scrollbars --window-size=1200,630 --virtual-time-budget=15000 --allow-file-access-from-files --screenshot=assets/og-card.png assets/og-card.html`. LinkedIn caches previews; refresh with https://www.linkedin.com/post-inspector/ |
+| Search data | the `application/ld+json` block in `<head>`, `sitemap.xml`, `robots.txt` | the Person data (job title, employer, links) and the sitemap. Update `worksFor` when you change jobs, and `lastmod` in `sitemap.xml` after big edits |
 | Hero (name, role, intro) | `<header class="hero">` | `class="role"` line, `class="lead"` paragraph, "Open to…" status |
 | Typing animation | `const words =` | the rotating "I build …" phrases |
 | Headline numbers | `class="stat"` | `data-count="7"` is the animated number, `class="lbl"` is the label |
