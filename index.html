@@ -206,6 +206,14 @@
     .points b { color: var(--text); font-weight: 600; }
     .tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; list-style: none; }
     .tags li { font: 500 12px/1 "JetBrains Mono", monospace; padding: 6px 10px; border-radius: 8px; background: var(--bg-2); color: var(--muted); border: 1px solid var(--line); }
+    .domains { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: -20px 0 40px; list-style: none; }
+    .domains li { font: 500 13px/1 "Space Grotesk", sans-serif; padding: 9px 14px; border-radius: 999px; background: var(--surface); color: var(--muted); border: 1px solid var(--line); }
+    .domains li b { color: var(--accent); font-weight: 600; margin-right: 6px; }
+    .job.prelude { padding: 18px 28px; background: transparent; box-shadow: none; border-style: dashed; }
+    .job.prelude .co-logo { background: var(--bg-2); color: var(--muted); }
+    .job.prelude .co-logo svg { width: 26px; height: 26px; }
+    .job.prelude h3 { font-size: 17px; }
+    .job.prelude p { margin: 6px 0 0; color: var(--muted); font-size: 14.5px; }
     .award { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px; font-size: 13px; font-weight: 600; padding: 7px 12px; border-radius: 10px; background: var(--chip); color: var(--accent); }
 
     /* ---------- stack chart ---------- */
@@ -484,6 +492,9 @@
           <div><p class="kicker">// 01 — experience</p><h2>Where I've shipped</h2></div>
           <p class="sec-sub">From government platforms to open banking &mdash; backend-heavy, full-stack when it matters.</p>
         </div>
+        <ul class="domains reveal" aria-label="Domains I've worked in">
+          <li><b>●</b>Open banking &amp; payments</li><li>Integrations &amp; multi-way sync</li><li>E-commerce</li><li>Food-tech</li><li>Government digital transformation</li><li>Shipping &amp; logistics</li><li>Energy &amp; utilities</li><li>Performance &amp; load testing</li>
+        </ul>
 
         <div class="timeline" id="timeline">
           <div class="rail"></div><div class="rail-fill"></div>
@@ -547,6 +558,14 @@
                 <li>Maintained CI/CD pipelines with Jenkins and Docker, reducing deployment errors and cycle time.</li>
               </ul>
               <ul class="tags"><li>Node.js</li><li>React</li><li>MongoDB</li><li>Redis</li><li>Elasticsearch</li><li>Jenkins</li><li>Docker</li></ul>
+            </div>
+          </article>
+
+          <article class="job prelude reveal">
+            <div class="co-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/></svg></div>
+            <div>
+              <div class="job-top"><h3>Before software · Site &amp; Technical Office Engineer</h3><span class="when">2015 — 2018</span></div>
+              <p>Site and technical-office engineering on surveying, infrastructure and utilities projects. Moved into software in 2018 through ITI's web development diploma.</p>
             </div>
           </article>
         </div>
